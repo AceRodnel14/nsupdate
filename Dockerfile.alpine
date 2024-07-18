@@ -1,0 +1,17 @@
+FROM alpine:latest
+
+RUN adduser \
+    --disabled-password --gecos "" \
+    --home "/" --shell "/sbin/nologin" \
+    --no-create-home bindupdate \
+    && apk upgrade --no-cache \
+    && apk add --no-cache wget bind-tools
+
+COPY bindupdate.sh /usr/bin/bindupdate.sh
+
+USER bindupdate
+
+WORKDIR /usr/bin
+
+CMD ["/bin/ash", "/usr/bin/bindupdate.sh"]
+#ENTRYPOINT ["/bin/bash", "/bin/bindupdate.sh"]

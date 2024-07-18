@@ -1,0 +1,14 @@
+version: "3"
+services:
+  bindupdate:
+    container_name: bindupdate
+    # image: portainer/agent:2.19.4
+    image: eacer/bindupdate:alpine
+    environment:
+      - DNSSERVER=10.0.0.123
+      - DOMAIN=domain
+      - HOSTNAME=hostname
+      - IPADDRESS=${IPADDRESS}
+      - DNSSERVERUSR=usr
+      - DNSSERVERPWD=psswrd
+      - TZ=Etc/UTC
